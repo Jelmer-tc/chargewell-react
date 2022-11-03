@@ -3,6 +3,7 @@ import { ConfiguratorContext } from '@elfsquad/configurator';
 import { useEffect, useState } from 'react';
 
 import { Step } from './Step';
+import { Checkout } from './Checkout';
 import './Configurator.css';
 
 const TENANT_ID = '5ad49ccc-6f5d-49a6-a48a-2a7cfa1f444d';
@@ -18,16 +19,13 @@ export function Configurator() {
 
     useEffect(() => {
         configuratorContext.onUpdate((update) => {
-            //updateConfiguration({...configuratorContext.configurations[0]});
-            console.log({...update.detail});
             updateConfiguration({...update.detail});
             updateMaxSteps(update.detail.steps?.length || 0);
         });
     
         const setupConfigurator = async () => {
-            //Open existing or create new configuration
+            //Open existing or create new configuration (i dont think opening ever happens?)
             if ( configuratorContext.configurations?.length ) {
-                console.log('opened existing configurator');
                 await configuratorContext.openConfiguration(configuratorContext.configurations[0].id);
             } else {
                 await configuratorContext.newConfiguration(MODEL_ID);
@@ -52,36 +50,34 @@ export function Configurator() {
             <footer className='configurator__footer'>
 
                 {configuration?.totalPrice > 0 &&
-                
-                    <div className='configurator__total'>
-                        <span className='configurator__price'>{configuration?.totalPriceExclVat}<span className='configurator__excl-vat'>Excl.</span></span>
-                        <button onClick={() => {
-                            console.log('Request a quote!');
-                        }}>Request quote</button>
-                    </div>
+                    <Checkout configuration={configuration} configuratorContext={configuratorContext} />
                 }
         
                 <nav className='configurator__nav'>
-                    {activeStep > 0 &&
-                        <button className="step__f-previous btn btn--secondary" onClick={() => { updateActiveStep(activeStep - 1)}}>
+                    {(activeStep > 0 &&
+                        <button className="configurator__nav-btn btn btn--secondary" onClick={() => { updateActiveStep(activeStep - 1)}}>
                             Previous
                         </button>
+                    ) ||
+                        <span className="configurator__nav-btn btn btn--inactive">Previous</span>
+                    }
+
+                    {(activeStep < maxSteps-1 &&
+                        <button className="configurator__nav-btn btn btn--primary" onClick={() => { updateActiveStep(activeStep + 1)}}>
+                            Next
+                        </button>
+                    ) ||
+                        <span className="configurator__nav-btn btn btn--inactive">Next</span>
                     }
 
                     {configuration?.steps?.map( (step, index) => {
                         return (
-                            <button key={step.id} className='configurator__step' onClick={() => { updateActiveStep(index); }}>
+                            <button key={step.id} className='configurator__step-btn' onClick={() => { updateActiveStep(index); }}>
                                 <span className='configurator__step-number'>{index + 1}.</span><br/>
                                 <span className='configurator__step-title'>{step.title}</span>
                             </button>
                         )
                     })}
-
-                    { activeStep < maxSteps-1 &&
-                        <button className="step__f-next btn btn--primary" onClick={() => { updateActiveStep(activeStep + 1)}}>
-                            Next
-                        </button>
-                    }
                 </nav>
             </footer>
         </section>

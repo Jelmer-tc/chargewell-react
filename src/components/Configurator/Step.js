@@ -1,8 +1,7 @@
-import { act } from "react-dom/test-utils";
 import { Feature } from "./Feature";
 
 export function Step(props) {
-    const {step, configuratorContext, activeStep, updateActiveStep} = {...props};
+    const {step, configuratorContext} = {...props};
 
     return (
         <div className="step">
