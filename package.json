@@ -1,8 +1,10 @@
 {
-  "name": "elfsquad-test",
+  "name": "chargewell-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@elfsquad/authentication": "^2.0.6",
+    "@elfsquad/configurator": "^2.0.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

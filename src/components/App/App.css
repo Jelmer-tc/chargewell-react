@@ -1,0 +1,25 @@
+:root {
+    --c-1: #0d3f68;
+    --c-2: #fddd3a;
+    --c-3: #00a4f0;
+    --c-font-d: #0d3f68;
+    --c-font-g: #8b8b8b;
+    --c-font-l: #fff;
+    --c-font-d-i: #343434;
+    --c-font-l-i: #fff;
+    --c-bg-xd: #1e2734;
+    --c-bg-d: #eff1f4;
+    --c-bg-d-alt: #eff1f412;
+    --c-bg-l: #fff;
+    --c-border-d: #0d3f6850;
+    --c-border-l: #fff;
+    --c-error: #f00;
+
+    --page-col-w: 1180px;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: var(--c-bg-d);
+}
