@@ -50,6 +50,17 @@ export function Configurator() {
             }
 
             <footer className='configurator__footer'>
+
+                {configuration?.totalPrice > 0 &&
+                
+                    <div className='configurator__total'>
+                        <span className='configurator__price'>{configuration?.totalPriceExclVat}<span className='configurator__excl-vat'>Excl.</span></span>
+                        <button onClick={() => {
+                            console.log('Request a quote!');
+                        }}>Request quote</button>
+                    </div>
+                }
+        
                 <nav className='configurator__nav'>
                     {activeStep > 0 &&
                         <button className="step__f-previous btn btn--secondary" onClick={() => { updateActiveStep(activeStep - 1)}}>

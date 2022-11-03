@@ -11,6 +11,11 @@
 .configurator__footer {
   padding-block: 1em;
 }
+.configurator__total {
+  border: 1px dashed;
+  margin-block: 0.5em;
+  padding: 0.5em 1em;
+}
 .configurator__nav {
   display: flex;
   margin-inline: auto;
