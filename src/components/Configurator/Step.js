@@ -6,23 +6,10 @@ export function Step(props) {
 
     return (
         <div className="step">
-            {step.name}
+            <h2 className="step__title">{step.title}</h2>
             {step.features.map(childFeature =>
                 <Feature key={childFeature.id} feature={childFeature} configuratorContext={configuratorContext} />
             )}
-
-            <div className="step__footer">
-                {activeStep > 0 &&
-                    <button className="step__f-previous btn btn--secondary"
-                        onClick={() => { updateActiveStep(activeStep - 1)}}
-                    >Previous</button>
-                }
-                {activeStep < 3 &&
-                    <button className="step__f-next btn btn--primary"
-                        onClick={() => { updateActiveStep(activeStep + 1)}}
-                    >Next</button>
-                }
-            </div>
         </div>
     )
 }

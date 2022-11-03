@@ -1,5 +1,6 @@
 .debug-header {
   background-color: #0008;
+  display: flex;
   margin-bottom: 1em;
   padding: 1em;
 }
@@ -8,20 +9,17 @@
   font-size: 1rem;
 }
 .configurator__footer {
-  background-color: var(--c-bg-l);
-  bottom: 0;
-  position: fixed;
   padding-block: 1em;
-  width: 100%;
 }
 .configurator__nav {
   display: flex;
-  justify-content: space-between;
   margin-inline: auto;
-  width: var(--page-col-w);
 }
-.step {
-  padding-bottom: 4rem;
-  margin-inline: auto;
-  width: var(--page-col-w);
+.feature {
+  padding-left: 1em;
+}
+.feature--top {
+  border: 1px solid;
+  margin-block: 0.5em;
+  padding-block: 0.5em;
 }

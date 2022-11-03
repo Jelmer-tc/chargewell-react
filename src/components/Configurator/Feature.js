@@ -12,7 +12,7 @@ export function Feature(props) {
     }
 
     return (
-        <div className="feature">
+        <div className={"feature " + (feature.displayType == 1 ? ' feature--top' : '')}>
             {feature.description.replace(tagRegex, '')}
             {featureInput()}
             {feature.features.map(childFeature =>
@@ -32,7 +32,7 @@ export function FeatureInput(props) {
                 type={type}
                 checked={feature.isSelected}
                 onChange={() => {
-                    configuratorContext.configurations[0].updateRequirement(feature.id, feature.isSelected, feature.isSelected ? 1 : 0);
+                    configuratorContext.configurations[0].updateRequirement(feature.id, feature.isSelected, feature.isSelected ? 0 : 1);
                 }}
             />
             <label className="feature__label">

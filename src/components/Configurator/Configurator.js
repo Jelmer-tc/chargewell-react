@@ -14,12 +14,14 @@ const configuratorContext = new ConfiguratorContext({
 export function Configurator() {
     const [configuration, updateConfiguration] = useState({});
     const [activeStep, updateActiveStep] = useState(0);
+    const [maxSteps, updateMaxSteps] = useState(0);
 
     useEffect(() => {
         configuratorContext.onUpdate((update) => {
             //updateConfiguration({...configuratorContext.configurations[0]});
             console.log({...update.detail});
             updateConfiguration({...update.detail});
+            updateMaxSteps(update.detail.steps?.length || 0);
         });
     
         const setupConfigurator = async () => {
@@ -44,23 +46,31 @@ export function Configurator() {
             </header>
 
             {configuration?.steps &&
-                <Step step={configuration.steps[activeStep]}
-                    configuratorContext={configuratorContext}
-                    activeStep={activeStep}
-                    updateActiveStep={updateActiveStep}
-                />
+                <Step step={configuration.steps[activeStep]} configuratorContext={configuratorContext} />
             }
 
             <footer className='configurator__footer'>
                 <nav className='configurator__nav'>
-                {configuration?.steps?.map( (step, index) => {
-                    return (
-                        <button key={step.id} className='configurator__step' onClick={() => { updateActiveStep(index); }}>
-                            <span className='configurator__step-number'>{index + 1}</span>
-                            <span className='configurator__step-title'>{step.title}</span>
+                    {activeStep > 0 &&
+                        <button className="step__f-previous btn btn--secondary" onClick={() => { updateActiveStep(activeStep - 1)}}>
+                            Previous
                         </button>
-                    )
-                })}
+                    }
+
+                    {configuration?.steps?.map( (step, index) => {
+                        return (
+                            <button key={step.id} className='configurator__step' onClick={() => { updateActiveStep(index); }}>
+                                <span className='configurator__step-number'>{index + 1}.</span><br/>
+                                <span className='configurator__step-title'>{step.title}</span>
+                            </button>
+                        )
+                    })}
+
+                    { activeStep < maxSteps-1 &&
+                        <button className="step__f-next btn btn--primary" onClick={() => { updateActiveStep(activeStep + 1)}}>
+                            Next
+                        </button>
+                    }
                 </nav>
             </footer>
         </section>
