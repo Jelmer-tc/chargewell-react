@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { Step } from './Step';
 import { Checkout } from './Checkout';
-import './Configurator.css';
+import './Configurator.scss';
 
 const TENANT_ID = '5ad49ccc-6f5d-49a6-a48a-2a7cfa1f444d';
 const MODEL_ID = 'd22978a8-711e-4646-c407-08da446a5fba';

@@ -1,5 +1,5 @@
 import { Configurator } from '../Configurator/Configurator';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
